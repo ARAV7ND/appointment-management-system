@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Doctors</title>
+</head>
+
+<body>
+<hr>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Patient ID</th>
+            <th>Date</th>
+            <th>start time</th>
+            <th>end time</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user : ${appointmentList}">
+
+            <td>
+                <span th:text="${user.patientId}"></span>
+            </td>
+            <td>
+                <span th:text="${user.date}"></span>
+            </td>
+            <td>
+                <span th:text="${user.startTime}"></span>
+            <td>
+                <span th:text="${user.endTime}"></span>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="form-group">
+        <a href="/" th:href="@{/logout}" class="btn btn-danger btn-sm">Logout</a>
+    </div>
+</div>
+
+</body>
+</html>
+
+
