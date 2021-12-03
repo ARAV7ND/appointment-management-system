@@ -9,6 +9,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "username")
@@ -16,6 +17,13 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "role_id")
+//    private List<Role> roles;
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -27,9 +35,6 @@ public class User {
 
     private List<Role> roles;
 
-//    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-//
-//    private List<Appointment> appointments;
     public User() {
 
     }
@@ -71,4 +76,16 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
+
+
 }

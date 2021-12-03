@@ -20,34 +20,46 @@
             <h1>Registration</h1>
             <form  th:action="@{/admin/saveDoctor}" method="post" th:object="${user}">
 
-                <input type="hidden" th:field="*{username}" />
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{temp}"/>
+                <span ></span>
                 <div class="form-group">
                     <label class="control-label" for="firstName">First Name</label>
-                    <input id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus"/>
+                    <input id="firstName" class="form-control" th:field="*{firstName}" th:errorClass="is-invalid"/>
+                    <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="invalid-feedback"></div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="lastName">Last Name</label>
-                    <input id="lastName" class="form-control" th:field="*{lastName}" required autofocus="autofocus"/>
+                    <input id="lastName" class="form-control" th:field="*{lastName}" th:errorClass="is-invalid"/>
+                    <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="invalid-feedback"></div>
+
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="email">Email</label>
-                    <input id="email" class="form-control" th:field="*{username}" required autofocus="autofocus"/>
+                    <input id="email" class="form-control" th:field="*{username}" th:errorClass="is-invalid"/>
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
+
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="password">Password</label>
-                    <input type="password" id="password" class="form-control" th:field="*{password}" required autofocus="autofocus"/>
+                    <input type="password" id="password" class="form-control" th:field="*{password}" th:errorClass="is-invalid"/>
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="specialist">specialist</label>
-                    <input id="specialist" class="form-control" th:field="*{specialist}" required autofocus="autofocus"/>
+                    <input id="specialist" class="form-control" th:field="*{specialist}" th:errorClass="is-invalid"/>
+                    <div th:if="${#fields.hasErrors('specialist')}" th:errors="*{specialist}" class="invalid-feedback"></div>
+
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="address">Address</label>
-                    <input id="address" class="form-control" th:field="*{address}" required autofocus="autofocus"/>
+                    <input id="address" class="form-control" th:field="*{address}" th:errorClass="is-invalid"/>
+                    <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback"></div>
                 </div>
                 <br>
 

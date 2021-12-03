@@ -23,8 +23,7 @@ public class Doctor {
     private String address;
 
     @OneToMany(fetch = FetchType.LAZY
-            ,cascade = {CascadeType.DETACH,CascadeType.MERGE,
-            CascadeType.PERSIST,CascadeType.PERSIST})
+            ,cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private List<Appointment> appointments;
 

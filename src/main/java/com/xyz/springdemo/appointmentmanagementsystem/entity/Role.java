@@ -1,13 +1,14 @@
 package com.xyz.springdemo.appointmentmanagementsystem.entity;
 
 import javax.persistence.*;
-
+import java.util.*;
 @Entity
 @Table(name = "roles")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "authority")
@@ -15,13 +16,15 @@ public class Role {
 
     @Column(name = "username")
     private String username;
+
     public Role() {
 
     }
 
-    public Role(String authority, String email) {
+
+    public Role(String authority, String username) {
         this.authority = authority;
-        this.username = email;
+        this.username = username;
     }
 
     public int getId() {

@@ -1,10 +1,7 @@
 package com.xyz.springdemo.appointmentmanagementsystem.controller;
-
-import com.xyz.springdemo.appointmentmanagementsystem.dto.PatientDto;
 import com.xyz.springdemo.appointmentmanagementsystem.entity.Appointment;
 import com.xyz.springdemo.appointmentmanagementsystem.entity.Doctor;
 import com.xyz.springdemo.appointmentmanagementsystem.entity.Patient;
-import com.xyz.springdemo.appointmentmanagementsystem.entity.User;
 import com.xyz.springdemo.appointmentmanagementsystem.service.AppointmentService;
 import com.xyz.springdemo.appointmentmanagementsystem.service.DoctorService;
 import com.xyz.springdemo.appointmentmanagementsystem.service.PatientService;

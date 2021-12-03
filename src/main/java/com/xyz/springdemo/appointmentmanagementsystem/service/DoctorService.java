@@ -8,12 +8,12 @@ import java.util.*;
 public interface DoctorService {
     void save(DoctorDto doctorDto);
     void deleteById(Integer integer);
+    void deleteByUsername(String username);
     List<Doctor> findAll();
     Doctor findById(int id);
     DoctorDto update(int id);
     void addAppointment(int doctorId, Appointment appointment);
     Doctor findByUsername(String username);
     List<Appointment> appointmentList(int id);
-    DoctorDto findByIdTwo(int id);
 
 }

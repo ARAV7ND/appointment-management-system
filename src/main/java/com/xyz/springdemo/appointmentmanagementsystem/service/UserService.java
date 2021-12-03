@@ -6,9 +6,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.*;
 public interface UserService extends UserDetailsService {
-    User save(User user);
+    void save(User user);
     List<User> findAll();
     User findById(int id);
     User findByUsername(String username);
     void deleteById(int id);
+    void deleteByUsername(String username);
+    public boolean usernameAlreadyExists(String email);
 }

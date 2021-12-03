@@ -25,6 +25,7 @@
             <h1>Registration</h1>
             <form  th:action="@{/admin/savePatient}" method="post" th:object="${user}">
                 <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{temp}" />
                 <div class="form-group">
                     <label class="control-label" for="firstName">First Name</label>
                     <input id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus"/>

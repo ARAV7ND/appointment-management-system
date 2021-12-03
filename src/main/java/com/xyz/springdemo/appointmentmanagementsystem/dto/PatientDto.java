@@ -1,13 +1,35 @@
 package com.xyz.springdemo.appointmentmanagementsystem.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class PatientDto {
     private int id;
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String username;
-    private String password;
 
+    @NotNull(message = "first name Required")
+    @Size(min = 3,message = "is required")
+    @Pattern(regexp = "[^0-9]*",message = "numbers are not allowed")
+    private String firstName;
+
+    @NotNull(message = "last name Required")
+    @Size(min = 1,message = "is required")
+    @Pattern(regexp = "[^0-9]*",message = "numbers are not allowed")
+    private String lastName;
+
+    @NotNull(message = "phone number is required")
+    @Pattern(regexp = "[^a-zA-Z]*",message = "letters are not allowed")
+    @Size(min = 6,max = 15)
+    private String phone;
+
+    @Email
+    private String username;
+
+    @NotNull(message = "password is required")
+    @Size(min = 4,message = "password length should be greater than 3")
+    private String password;
+    private int temp;
     public PatientDto() {
     }
 
@@ -65,5 +87,13 @@ public class PatientDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getTemp() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp = temp;
     }
 }

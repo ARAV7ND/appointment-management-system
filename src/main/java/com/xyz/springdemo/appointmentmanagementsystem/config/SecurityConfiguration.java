@@ -55,9 +55,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/login").permitAll()
-//                .antMatchers("/patient/**").hasRole("USER")
-//                .antMatchers("/admin/**","/doctor/**","/patient/**").hasRole("ADMIN")
-//                .antMatchers("/doctor/**").hasRole("DOCTOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -68,7 +65,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .permitAll();
+                .permitAll()
+                .and().exceptionHandling().accessDeniedPage("/access-denied");
     }
 
 

@@ -26,26 +26,33 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public void save(PatientDto patientDto) {
         Patient patient = new Patient(patientDto.getFirstName(),patientDto.getLastName(),patientDto.getUsername(),patientDto.getPhone());
-        User user = new User(patientDto.getUsername(), bCryptPasswordEncoder.encode(patientDto.getPassword()), Arrays.asList(new Role("ROLE_USER", patientDto.getUsername())));
         patient.setId(patientDto.getId());
-        user.setId(patientDto.getId());
-        patientRepository.save(patient);
+        User user = new User(patientDto.getUsername(), bCryptPasswordEncoder.encode(patientDto.getPassword()),Arrays.asList(new Role("ROLE_USER", patientDto.getUsername())));
+        user.setId(patientDto.getTemp());
         userService.save(user);
+        patientRepository.save(patient);
+
     }
 
     @Override
-    public void deleteById(Integer integer) {
-        patientRepository.deleteById(integer);
-        userService.deleteById(integer);
+    public void deleteById(Integer id) {
+        Patient patient = findById(id);
+        if(patient.getAppointments().size()>0){
+            throw new RuntimeException("Can't delete when there is an active appointment booked");
+        }
+        User user = userService.findByUsername(patient.getEmail());
+        userService.deleteById(user.getId());
+        patientRepository.deleteById(id);
+
     }
 
     @Override
     public Patient findById(int id) {
         Optional<Patient> result = patientRepository.findById(id);
-        Patient patient;
+        Patient patient = null ;
         if(result.isPresent()){
             patient = result.get();
-        }else{throw new RuntimeException("404!! No Patient found with Id "+id);}
+        }
         return patient;
     }
 
@@ -57,11 +64,11 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public PatientDto update(int id) {
         Patient patient = findById(id);
-        User user = userService.findById(patient.getId());
-
+        User user = userService.findByUsername(patient.getEmail());
         PatientDto patientDto = new PatientDto(patient.getFirstName(),patient.getLastName(),
                                      patient.getPhone(),user.getUsername(), user.getPassword());
-        patientDto.setId(patient.getId());
+            patientDto.setId(patient.getId());
+        patientDto.setTemp(user.getId());
         return patientDto;
     }
 
@@ -77,8 +84,6 @@ public class PatientServiceImpl implements PatientService{
         if(patient.isPresent()){
             patientObj = patient.get();
             patientObj.addAppointment(appointment);
-        }else{
-            throw new RuntimeException("No Patient found with id "+patientId);
         }
     }
 }

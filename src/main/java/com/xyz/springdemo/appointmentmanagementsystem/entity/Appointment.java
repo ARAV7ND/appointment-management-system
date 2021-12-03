@@ -25,6 +25,14 @@ public class Appointment {
     @Column(name = "doctor_Id")
     private int doctorId;
 
+//    @ManyToOne
+//    @JoinColumn(name = "doctor_id")
+//    private Doctor doctor;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "patient_id")
+//    private Patient patient;
+
     public Appointment() {
     }
 
@@ -83,6 +91,5 @@ public class Appointment {
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
     }
-
 
 }
